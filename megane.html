@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メガネ｜髙橋メガネ - 似合うメガネは、つくれる。</title>
+  <meta name="description" content="似合うメガネは、つくれる。顔型・印象別のスタイル提案、眼科併設の専門性、30分で完結する来店体験。30代のためのメガネ選びは髙橋メガネへ。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========================================
+       メガネページ専用スタイル
+       ======================================== */
+
+    /* --- ファーストビュー --- */
+    .mg-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: #0f1923;
+      overflow: hidden;
+    }
+
+    .mg-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0f1923 0%, #1a2e45 50%, #0f1923 100%);
+    }
+
+    /* 装飾ライン */
+    .mg-hero-line {
+      position: absolute;
+      top: 0; right: 15%;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(74,144,217,0.4), transparent);
+    }
+
+    .mg-hero-line2 {
+      position: absolute;
+      bottom: 0; left: 20%;
+      width: 40%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(74,144,217,0.3), transparent);
+    }
+
+    .mg-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 120px 0 80px;
+      width: 100%;
+    }
+
+    .mg-hero-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--secondary);
+      border-left: 2px solid var(--secondary);
+      padding-left: 12px;
+      margin-bottom: 28px;
+    }
+
+    .mg-hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .mg-hero-title .accent {
+      color: var(--secondary);
+    }
+
+    .mg-hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 44px;
+      letter-spacing: 0.05em;
+    }
+
+    .mg-hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      background: transparent;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-dark-outline:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    /* スクロールインジケーター */
+    .mg-hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+    }
+
+    .mg-hero-scroll::after {
+      content: "";
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* --- コンセプト帯 --- */
+    .mg-concept {
+      background: var(--primary);
+      padding: 48px 0;
+    }
+
+    .mg-concept-inner {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .mg-concept-item {
+      text-align: center;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .mg-concept-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--secondary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .mg-concept-label {
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- スタイル提案 --- */
+    .style-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .style-tab {
+      padding: 10px 22px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      background: var(--bg);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .style-tab.active, .style-tab:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .style-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .style-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .style-card-img {
+      width: 100%;
+      height: 220px;
+      background: var(--bg-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .style-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+    }
+
+    .style-card:hover .style-card-img img {
+      transform: scale(1.04);
+    }
+
+    .style-card-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .style-card-body {
+      padding: 18px 16px;
+    }
+
+    .style-card-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .style-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .style-card-frames {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .style-frame-tag {
+      font-size: 0.72rem;
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+      border-radius: 100px;
+      padding: 2px 10px;
+    }
+
+    /* --- BEFORE / AFTER --- */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .ba-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .ba-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ba-side {
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      gap: 4px;
+    }
+
+    .ba-side.before {
+      background: #f0f0f0;
+    }
+
+    .ba-side.after {
+      background: var(--accent-blue);
+    }
+
+    .ba-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .ba-body {
+      padding: 18px;
+    }
+
+    .ba-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .ba-desc {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* --- 専門性 --- */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .expertise-left {
+      background: var(--primary);
+      padding: 56px 48px;
+      color: #fff;
+    }
+
+    .expertise-right {
+      padding: 56px 48px;
+      background: var(--bg);
+    }
+
+    .expertise-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .expertise-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .expertise-desc {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      opacity: 0.85;
+    }
+
+    .expertise-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .expertise-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--bg-gray);
+      border-radius: var(--radius);
+    }
+
+    .expertise-point-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .expertise-point-text strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .expertise-point-text span {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* --- タイパ設計（流れ） --- */
+    .flow-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-steps::before {
+      content: "";
+      position: absolute;
+      top: 36px;
+      left: 36px;
+      right: 36px;
+      height: 2px;
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      z-index: 0;
+    }
+
+    .flow-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 12px;
+    }
+
+    .flow-step-num {
+      width: 72px;
+      height: 72px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0 auto 16px;
+      border: 4px solid var(--bg);
+      position: relative;
+    }
+
+    .flow-step-time {
+      display: inline-block;
+      background: var(--secondary);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 8px;
+    }
+
+    .flow-step-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .flow-step-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .flow-total {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px 36px;
+      background: var(--accent-blue);
+      border-radius: var(--radius-lg);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    .flow-total-time {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    /* --- スタイル別ラインナップ --- */
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .lineup-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .lineup-card-head {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .lineup-card-head.business { background: #1e3a5f; color: #fff; }
+    .lineup-card-head.casual   { background: #2d6a4f; color: #fff; }
+    .lineup-card-head.fashion  { background: #7b2d8b; color: #fff; }
+
+    .lineup-card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .lineup-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .lineup-card-sub {
+      font-size: 0.75rem;
+      opacity: 0.75;
+    }
+
+    .lineup-card-body {
+      padding: 20px;
+      background: var(--bg);
+    }
+
+    .lineup-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.88rem;
+    }
+
+    .lineup-item:last-child {
+      border-bottom: none;
+    }
+
+    .lineup-item-icon {
+      font-size: 1.2rem;
+    }
+
+    .lineup-item-name {
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .lineup-item-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* --- 30代の声 --- */
+    .mg-reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .mg-review-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .mg-review-card::before {
+      content: "\201C";
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 3.5rem;
+      color: var(--accent-blue-deep);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .mg-review-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-top: 16px;
+    }
+
+    .mg-review-change {
+      display: inline-block;
+      background: var(--accent-blue);
+      color: var(--secondary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .mg-review-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mg-review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .mg-review-info {
+      font-size: 0.82rem;
+    }
+
+    .mg-review-info strong {
+      display: block;
+      color: var(--text);
+    }
+
+    .mg-review-info span {
+      color: var(--text-muted);
+    }
+
+    /* --- ストーリー --- */
+    .story-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .story-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .story-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--primary);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .story-body {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 2;
+    }
+
+    .story-img {
+      background: var(--bg-gray);
+      border-radius: var(--radius-lg);
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 1px solid var(--border);
+    }
+
+    /* --- 診断CTA --- */
+    .diagnosis-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .diagnosis-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(74,144,217,0.15) 0%, transparent 60%);
+    }
+
+    .diagnosis-cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .diagnosis-cta-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+
+    .diagnosis-cta-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .diagnosis-cta-sub {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+      font-size: 1rem;
+    }
+
+    /* --- レスポンシブ --- */
+    @media (max-width: 1024px) {
+      .style-grid { grid-template-columns: repeat(2, 1fr); }
+      .ba-grid    { grid-template-columns: repeat(2, 1fr); }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .story-section  { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .mg-hero { min-height: 85vh; }
+      .style-grid   { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .ba-grid      { grid-template-columns: 1fr; }
+      .flow-steps   { flex-direction: column; gap: 24px; }
+      .flow-steps::before { display: none; }
+      .lineup-grid  { grid-template-columns: 1fr; }
+      .mg-reviews   { grid-template-columns: 1fr; }
+      .expertise-left, .expertise-right { padding: 36px 24px; }
+      .story-img    { height: 240px; }
+    }
+
+    @media (max-width: 640px) {
+      .style-grid { grid-template-columns: 1fr; }
+      .mg-concept-inner { gap: 28px; }
+      .flow-total { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-main">髙橋メガネ</span>
+        <span class="nav-logo-sub">地域の目の専門店</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">ホーム</a>
+        <a href="index.html#strengths">当店の強み</a>
+        <a href="index.html#concerns">お悩み別</a>
+        <a href="service.html" class="active">サービス一覧</a>
+        <a href="hajimete.html">初めての方へ</a>
+        <a href="voice.html">口コミ</a>
+        <a href="shop.html">店舗案内</a>
+        <a href="tel:06-6351-3842" class="nav-cta">&#128222; お電話</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">ホーム</a>
+    <a href="index.html#strengths">当店の強み</a>
+    <a href="index.html#concerns">お悩み別</a>
+    <a href="service.html">サービス一覧</a>
+    <a href="hajimete.html">初めての方へ</a>
+    <a href="voice.html">口コミ</a>
+    <a href="shop.html">店舗案内</a>
+    <a href="tel:06-6351-3842" class="nav-cta">&#128222; お電話</a>
+  </div>
+
+  <!-- ① ファーストビュー -->
+  <section class="mg-hero">
+    <div class="mg-hero-bg"></div>
+    <div class="mg-hero-line"></div>
+    <div class="mg-hero-line2"></div>
+    <div class="mg-hero-content">
+      <div class="container">
+        <p class="mg-hero-label">GLASSES — STYLE &amp; FUNCTION</p>
+        <h1 class="mg-hero-title">
+          似合うメガネは、<br>
+          <span class="accent">つくれる。</span>
+        </h1>
+        <p class="mg-hero-sub">第一印象は"フレーム"で変わる</p>
+        <div class="mg-hero-ctas">
+          <a href="#style" class="btn btn-primary btn-lg">スタイルを見る</a>
+          <a href="#flow" class="btn-dark-outline">来店の流れ（約30分）</a>
+        </div>
+      </div>
+    </div>
+    <div class="mg-hero-scroll">SCROLL</div>
+  </section>
+
+  <!-- コンセプト帯 -->
+  <div class="mg-concept">
+    <div class="container">
+      <div class="mg-concept-inner">
+        <div class="mg-concept-item">
+          <div class="mg-concept-num">30<span style="font-size:1rem;">分</span></div>
+          <div class="mg-concept-label">最短で完結する来店体験</div>
+        </div>
+        <div class="mg-concept-item">
+          <div class="mg-concept-num">500<span style="font-size:1rem;">種</span></div>
+          <div class="mg-concept-label">以上のフレームラインナップ</div>
+        </div>
+        <div class="mg-concept-item">
+          <div class="mg-concept-num">145<span style="font-size:1rem;">年</span></div>
+          <div class="mg-concept-label">の信頼と専門実績</div>
+        </div>
+        <div class="mg-concept-item">
+          <div class="mg-concept-num">4.8<span style="font-size:1rem;">★</span></div>
+          <div class="mg-concept-label">口コミ評価（128件）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② スタイル提案 -->
+  <section class="section" id="style">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">STYLE PROPOSAL</span>
+        <h2 class="section-title">あなたに似合うのは、どのスタイル？</h2>
+        <p class="section-subtitle">印象・顔型・ライフスタイルから、最適なフレームをご提案します。</p>
+      </div>
+
+      <!-- スタイルカード -->
+      <div class="style-grid fade-in">
+        <div class="style-card">
+          <div class="style-card-img">
+            <img src="https://images.unsplash.com/photo-1655776901254-9305e91124b7?w=600&h=440&fit=crop&crop=faces&q=80" alt="知的な印象のメガネスタイル" loading="lazy">
+            <span class="style-card-tag">INTELLIGENT</span>
+          </div>
+          <div class="style-card-body">
+            <p class="style-card-name">知的・誠実な印象</p>
+            <p class="style-card-desc">「デキる人」に見られたい方に。細めのメタルフレームやスクエアで、知性と信頼感を演出。</p>
+            <div class="style-card-frames">
+              <span class="style-frame-tag">スクエア</span>
+              <span class="style-frame-tag">メタル細め</span>
+              <span class="style-frame-tag">シルバー</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="style-card">
+          <div class="style-card-img">
+            <img src="https://images.unsplash.com/photo-1758518729459-235dcaadc611?w=600&h=440&fit=crop&crop=faces&q=80" alt="やわらかい印象のメガネスタイル" loading="lazy">
+            <span class="style-card-tag">SOFT &amp; WARM</span>
+          </div>
+          <div class="style-card-body">
+            <p class="style-card-name">やわらかい・親しみやすい印象</p>
+            <p class="style-card-desc">話しかけやすい雰囲気を大切にしたい方に。ラウンドやオーバルで、柔らかな温かみを。</p>
+            <div class="style-card-frames">
+              <span class="style-frame-tag">ラウンド</span>
+              <span class="style-frame-tag">オーバル</span>
+              <span class="style-frame-tag">べっ甲柄</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="style-card">
+          <div class="style-card-img">
+            <img src="https://images.unsplash.com/photo-1714085164244-e748705d3fd4?w=600&h=440&fit=crop&crop=faces&q=80" alt="信頼感のあるメガネスタイル" loading="lazy">
+            <span class="style-card-tag">TRUST</span>
+          </div>
+          <div class="style-card-body">
+            <p class="style-card-name">信頼感・落ち着いた印象</p>
+            <p class="style-card-desc">ビジネスシーンで「安定感」を演出したい方に。ウェリントン型やナビゲーターで堂々とした存在感を。</p>
+            <div class="style-card-frames">
+              <span class="style-frame-tag">ウェリントン</span>
+              <span class="style-frame-tag">ナビゲーター</span>
+              <span class="style-frame-tag">ダークカラー</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="style-card">
+          <div class="style-card-img">
+            <img src="https://images.unsplash.com/photo-1712174766230-cb7304feaafe?w=600&h=440&fit=crop&crop=faces&q=80" alt="おしゃれなメガネスタイル" loading="lazy">
+            <span class="style-card-tag">FASHIONABLE</span>
+          </div>
+          <div class="style-card-body">
+            <p class="style-card-name">おしゃれ・個性的な印象</p>
+            <p class="style-card-desc">「センスがいい」と思われたい方に。ボストン型やクリアフレームで今っぽい抜け感を演出。</p>
+            <div class="style-card-frames">
+              <span class="style-frame-tag">ボストン</span>
+              <span class="style-frame-tag">クリア</span>
+              <span class="style-frame-tag">ツートン</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">BEFORE / AFTER</span>
+        <h2 class="section-title">フレームを変えると、印象が変わる</h2>
+        <p class="section-subtitle">スタッフによる似合わせ提案の実例です。</p>
+      </div>
+      <div class="ba-grid fade-in">
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before">&#128113;<span class="ba-label">BEFORE</span></div>
+            <div class="ba-side after">&#128526;<span class="ba-label">AFTER</span></div>
+          </div>
+          <div class="ba-body">
+            <p class="ba-title">知的な印象にアップグレード</p>
+            <p class="ba-desc">丸みのある黒縁 → 細めのシルバーメタルへ変更。周囲から「なんか雰囲気変わった？」と言われるように。</p>
+          </div>
+        </div>
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before">&#128112;<span class="ba-label">BEFORE</span></div>
+            <div class="ba-side after">&#128522;<span class="ba-label">AFTER</span></div>
+          </div>
+          <div class="ba-body">
+            <p class="ba-title">親しみやすさ＋おしゃれ感</p>
+            <p class="ba-desc">いつものウェリントン → べっ甲柄ボストンへ。「センスがいい」「やわらかい印象に」と社内でも好評。</p>
+          </div>
+        </div>
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before">&#128115;<span class="ba-label">BEFORE</span></div>
+            <div class="ba-side after">&#128525;<span class="ba-label">AFTER</span></div>
+          </div>
+          <div class="ba-body">
+            <p class="ba-title">目元の疲れも印象も改善</p>
+            <p class="ba-desc">度数が合っていなかったハーフリム → 視力測定後に最適レンズ＋スクエアフレームへ。疲れ目が激減。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 専門性の訴求 -->
+  <section class="section" id="expertise">
+    <div class="container">
+      <div class="expertise-grid fade-in">
+        <div class="expertise-left">
+          <p class="expertise-label">OUR EXPERTISE</p>
+          <h2 class="expertise-title">
+            メガネは、<br>
+            医療とファッションの<br>
+            交差点にある。
+          </h2>
+          <p class="expertise-desc">
+            「見た目がいい」だけではなく、「見え方がいい」まで設計する。
+            それが、髙橋メガネの考えるメガネづくりです。
+            創業145年の専門性と、最新の視力測定技術を融合し、
+            あなたの目の状態に合った一本をご提案します。
+          </p>
+        </div>
+        <div class="expertise-right">
+          <ul class="expertise-points">
+            <li class="expertise-point">
+              <span class="expertise-point-icon">&#128202;</span>
+              <div class="expertise-point-text">
+                <strong>精密な視力測定（無料）</strong>
+                <span>単なる度数チェックではなく、見え方の質・疲れやすさまで総合的に測定。「なんとなく見えにくい」も対応。</span>
+              </div>
+            </li>
+            <li class="expertise-point">
+              <span class="expertise-point-icon">&#128187;</span>
+              <div class="expertise-point-text">
+                <strong>長時間PCでも疲れにくいレンズ設計</strong>
+                <span>デスクワーク・スマホ利用が多い30代に最適なレンズをご提案。ブルーライト対策から中近両用まで。</span>
+              </div>
+            </li>
+            <li class="expertise-point">
+              <span class="expertise-point-icon">&#128065;</span>
+              <div class="expertise-point-text">
+                <strong>目の状態に合わせた個別提案</strong>
+                <span>同じ度数でも、生活スタイルや使用環境によって最適なレンズは異なります。あなたに合った一本を。</span>
+              </div>
+            </li>
+            <li class="expertise-point">
+              <span class="expertise-point-icon">&#127891;</span>
+              <div class="expertise-point-text">
+                <strong>認定眼鏡士が在籍</strong>
+                <span>国家資格に準ずる専門知識を持つ認定眼鏡士が、フレーム選びから度数確認まで一貫してサポート。</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ タイパ設計：来店の流れ -->
+  <section class="section section-gray" id="flow">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">TIME EFFICIENCY</span>
+        <h2 class="section-title">忙しくても、大丈夫。</h2>
+        <p class="section-subtitle">最短30分で、あなたの一本が見つかります。</p>
+      </div>
+      <div class="flow-steps fade-in">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <span class="flow-step-time">約5分</span>
+          <p class="flow-step-title">ご来店・ヒアリング</p>
+          <p class="flow-step-desc">予約なしでもOK。生活スタイルやご要望を簡単にお伺いします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <span class="flow-step-time">約10分</span>
+          <p class="flow-step-title">視力測定</p>
+          <p class="flow-step-desc">専門機器で正確に測定。見え方の質まで丁寧に確認します。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <span class="flow-step-time">約10分</span>
+          <p class="flow-step-title">フレーム提案・試着</p>
+          <p class="flow-step-desc">スタッフが似合うフレームを絞り込み。迷わず選べます。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <span class="flow-step-time">約5分</span>
+          <p class="flow-step-title">レンズ選び・お会計</p>
+          <p class="flow-step-desc">用途に合ったレンズをわかりやすくご説明します。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <span class="flow-step-time">後日お渡し</span>
+          <p class="flow-step-title">フィッティング・完成</p>
+          <p class="flow-step-desc">完成後は顔に合わせた最終調整。アフターケアもお任せ。</p>
+        </div>
+      </div>
+      <div class="text-center mt-40 fade-in">
+        <div class="flow-total">
+          <span>ご来店から完成まで最短</span>
+          <span class="flow-total-time">30分</span>
+          <span>〜お渡しまで</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ スタイル別ラインナップ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">LINEUP</span>
+        <h2 class="section-title">「選ぶ」のではなく、「選ばれる」</h2>
+        <p class="section-subtitle">シーン別に絞ったラインナップで、迷わず最適な一本に出会えます。</p>
+      </div>
+      <div class="lineup-grid fade-in">
+        <div class="lineup-card">
+          <div class="lineup-card-head business">
+            <div class="lineup-card-icon">&#128084;</div>
+            <p class="lineup-card-title">ビジネス向け</p>
+            <p class="lineup-card-sub">仕事の場で信頼感・清潔感を演出</p>
+          </div>
+          <div class="lineup-card-body">
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">スクエアメタル</span>
+              <span class="lineup-item-desc">知的・誠実</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ナビゲーター</span>
+              <span class="lineup-item-desc">安定感・存在感</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">チタンフレーム</span>
+              <span class="lineup-item-desc">軽量・高耐久</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ハーフリム</span>
+              <span class="lineup-item-desc">軽やか・洗練</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lineup-card">
+          <div class="lineup-card-head casual">
+            <div class="lineup-card-icon">&#127774;</div>
+            <p class="lineup-card-title">休日おしゃれ用</p>
+            <p class="lineup-card-sub">オフでもセンスをアピール</p>
+          </div>
+          <div class="lineup-card-body">
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ボストン</span>
+              <span class="lineup-item-desc">今っぽい・おしゃれ</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">クリアフレーム</span>
+              <span class="lineup-item-desc">抜け感・透明感</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">べっ甲・アセテート</span>
+              <span class="lineup-item-desc">温かみ・個性</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">サングラス兼用</span>
+              <span class="lineup-item-desc">度付きサングラス対応</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lineup-card">
+          <div class="lineup-card-head fashion">
+            <div class="lineup-card-icon">&#10024;</div>
+            <p class="lineup-card-title">印象アップ用</p>
+            <p class="lineup-card-sub">「変わったね」と言われたい方へ</p>
+          </div>
+          <div class="lineup-card-body">
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ラウンド</span>
+              <span class="lineup-item-desc">やわらか・アーティスティック</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ツートンカラー</span>
+              <span class="lineup-item-desc">目立つ・遊び心</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">ブランドフレーム</span>
+              <span class="lineup-item-desc">ステータス感</span>
+            </div>
+            <div class="lineup-item">
+              <span class="lineup-item-icon">&#128083;</span>
+              <span class="lineup-item-name">カラーレンズ対応</span>
+              <span class="lineup-item-desc">UVカット・おしゃれ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 30代の口コミ -->
+  <section class="section section-gray" id="reviews">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">REAL VOICES</span>
+        <h2 class="section-title">30代のリアルな声</h2>
+        <p class="section-subtitle">メガネを変えて、印象が変わった。毎日が変わった。</p>
+      </div>
+      <div class="mg-reviews fade-in">
+        <div class="mg-review-card">
+          <span class="mg-review-change">&#10024; 印象が変わった</span>
+          <p class="mg-review-text">自分では「どれが似合うかわからない」と思っていましたが、スタッフの方が顔型に合わせて3本に絞ってくれて、すんなり決まりました。会社で「雰囲気変わったね」と言われてうれしかったです。</p>
+          <div class="mg-review-meta">
+            <div class="mg-review-avatar">K</div>
+            <div class="mg-review-info">
+              <strong>K.T. 様</strong>
+              <span>34歳・男性／会社員</span>
+            </div>
+          </div>
+        </div>
+        <div class="mg-review-card">
+          <span class="mg-review-change">&#128187; 目の疲れが改善</span>
+          <p class="mg-review-text">PCを長時間使う仕事で、夕方になると目が重くなっていました。度数の見直しと、デスクワーク向けのレンズを提案してもらってから、疲れ方が全然違います。もっと早く来ればよかった。</p>
+          <div class="mg-review-meta">
+            <div class="mg-review-avatar">M</div>
+            <div class="mg-review-info">
+              <strong>M.N. 様</strong>
+              <span>31歳・女性／デザイナー</span>
+            </div>
+          </div>
+        </div>
+        <div class="mg-review-card">
+          <span class="mg-review-change">&#128584; 周囲の反応が変わった</span>
+          <p class="mg-review-text">ずっと同じフレームを使っていて、「メガネ＝消耗品」と思っていました。似合わせ提案を受けてフレームを変えたら、初対面の人に「おしゃれですね」と言ってもらえるように。驚きました。</p>
+          <div class="mg-review-meta">
+            <div class="mg-review-avatar">R</div>
+            <div class="mg-review-info">
+              <strong>R.S. 様</strong>
+              <span>38歳・男性／営業職</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ ストーリー -->
+  <section class="section" id="story">
+    <div class="container">
+      <div class="story-section fade-in">
+        <div>
+          <p class="story-label">OUR STORY</p>
+          <h2 class="story-title">
+            メガネは、<br>自分を表現する<br>最も身近な道具だ。
+          </h2>
+          <p class="story-body">
+            明治12年の創業以来、私たちは「見える」を支えてきました。<br><br>
+            でも今、メガネの価値はそれだけではありません。<br>
+            フレーム一本で、印象が変わる。自信が生まれる。<br>
+            毎日少しだけ、気分が上がる。<br><br>
+            「似合うメガネを手に入れると、世界の見え方が変わる」<br><br>
+            機能と美しさを両立した一本を届けること。<br>
+            それが、145年続く私たちの使命です。
+          </p>
+        </div>
+        <div class="story-img">&#128065;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 診断CTA -->
+  <section class="diagnosis-cta">
+    <div class="container">
+      <div class="diagnosis-cta-content fade-in">
+        <p class="diagnosis-cta-label">FIND YOUR STYLE</p>
+        <h2 class="diagnosis-cta-title">
+          あなたに似合うメガネ、<br>一緒に見つけましょう。
+        </h2>
+        <p class="diagnosis-cta-sub">
+          予約なしでもOK。まずはお気軽にご来店ください。
+        </p>
+        <div class="cta-buttons">
+          <a href="tel:06-6351-3842" class="btn btn-white btn-lg">&#128222; 06-6351-3842</a>
+          <a href="hajimete.html" class="btn btn-outline-white btn-lg">来店の流れを見る</a>
+          <a href="shop.html" class="btn btn-outline-white btn-lg">店舗を探す</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-logo">髙橋メガネ</p>
+          <p class="footer-tagline">地域の目の専門店</p>
+          <p class="footer-copy">創業明治12年。地域の皆さまの「よく見える」を支え続けています。</p>
+        </div>
+        <div class="footer-nav">
+          <h4>サービス</h4>
+          <ul>
+            <li><a href="service.html">サービス一覧</a></li>
+            <li><a href="megane.html">メガネ</a></li>
+            <li><a href="enkinhoryou.html">遠近両用メガネ</a></li>
+            <li><a href="kodomo.html">子供メガネ</a></li>
+            <li><a href="contactlens.html">コンタクトレンズ</a></li>
+            <li><a href="hochouki.html">補聴器</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>ご案内</h4>
+          <ul>
+            <li><a href="hajimete.html">初めての方へ</a></li>
+            <li><a href="voice.html">口コミ・お客様の声</a></li>
+            <li><a href="blog.html">ブログ</a></li>
+            <li><a href="shop.html">店舗案内</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>お問い合わせ</h4>
+          <p class="footer-tel"><a href="tel:06-6351-3842">06-6351-3842</a></p>
+          <p class="footer-hours">営業時間 10:00〜19:00</p>
+          <p class="footer-address">〒530-0041<br>大阪市北区天神橋6-5-7</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 髙橋メガネ All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- モバイル固定CTAバー -->
+  <div class="fixed-cta-bar">
+    <a href="shop.html" class="fixed-cta-btn fixed-cta-store">&#128205; 店舗案内</a>
+    <a href="tel:06-6351-3842" class="fixed-cta-btn fixed-cta-phone">&#128222; 電話する</a>
+  </div>
+
+  <!-- チャットボット -->
+  <div class="chatbot-wrapper" id="chatbotWrapper">
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="よくある質問">
+      <span class="chatbot-icon">&#128172;</span>
+      <span class="chatbot-label">よくある質問</span>
+    </button>
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <span>&#128172; よくある質問</span>
+        <button class="chatbot-close" id="chatbotClose">&#10005;</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
