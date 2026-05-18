@@ -1,1 +1,15 @@
 .claude/
+
+# macOS
+.DS_Store
+
+# AI向け内部指示書
+CLAUDE.md
+
+# UVカット関連の社内資料・スクリプト
+UVカット市場_訴求スライド.pptx
+create_uvcut_slide.py
+uvcut-market-slide.html
+
+# 出所不明・一時画像
+image-1779140625318.jpg

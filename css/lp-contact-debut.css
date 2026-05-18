@@ -1,0 +1,1239 @@
+/* =====================================================
+   コンタクトデビューLP（高校生・大学生向け）
+   - 手書きイラスト風 / 淡色 / スマホファースト
+   - 色や余白は :root の変数で一括変更できます
+   ===================================================== */
+
+/* --- リセット --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ===== カラーパレット（淡い水彩ブルー基調） =====
+     ヒーロー画像と世界観を統一しています。色を変えたい場合はここを編集 */
+  --cl-bg:        #fafdff;      /* 紙のような淡い背景 */
+  --cl-ink:       #3a5878;      /* メインテキスト（青みのあるインク） */
+  --cl-ink-soft:  #6b87a3;      /* サブテキスト */
+  --cl-ink-line:  #d5e3ee;      /* 罫線 */
+
+  /* メインの淡いブルー階層 */
+  --cl-blue-50:   #f3f8fc;      /* 極淡（背景） */
+  --cl-blue-100:  #e6f1f9;      /* 淡 */
+  --cl-blue-200:  #cfe5f3;      /* やや淡 */
+  --cl-blue-300:  #a8d2e8;      /* 中間 */
+  --cl-blue-400:  #6fb5d9;      /* 強め（アクセント） */
+  --cl-blue-500:  #4a96c2;      /* CTA用 */
+
+  /* 既存変数の互換用エイリアス（色味は新パレットに統一） */
+  --cl-blue:      var(--cl-blue-200);
+  --cl-blue-dp:   var(--cl-blue-500);
+  --cl-pink:      var(--cl-blue-100);
+  --cl-pink-dp:   var(--cl-blue-500);
+  --cl-mint:      var(--cl-blue-100);
+  --cl-mint-dp:   var(--cl-blue-400);
+  --cl-cream:     #fbf6ec;      /* ごくわずかなアクセント温色 */
+  --cl-cream-dp:  #c9b682;
+  --cl-lavender:  var(--cl-blue-100);
+
+  /* ===== 余白 =====
+     セクション間の余白を変えたい場合はここを編集 */
+  --cl-pad-x:     22px;
+  --cl-pad-y:     56px;
+  --cl-gap:       16px;
+
+  /* ===== 角丸 ===== */
+  --cl-radius:    18px;
+  --cl-radius-lg: 26px;
+
+  /* ===== シャドウ ===== */
+  --cl-shadow:    0 6px 18px rgba(60, 66, 87, 0.08);
+  --cl-shadow-lg: 0 12px 32px rgba(60, 66, 87, 0.12);
+
+  /* ===== フォント ===== */
+  --cl-font-body:  'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --cl-font-hand:  'Klee One', 'Yusei Magic', cursive;
+  --cl-font-pop:   'Yusei Magic', 'Klee One', cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--cl-font-body);
+  color: var(--cl-ink);
+  background: var(--cl-bg);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  /* 淡い水彩のにじみを敷きっぱなしに */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(168, 210, 232, 0.25) 0, transparent 38%),
+    radial-gradient(circle at 95% 85%, rgba(207, 229, 243, 0.35) 0, transparent 40%);
+  background-attachment: fixed;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ラップ（スマホ優先 / PCはセンタリング） */
+.cl-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--cl-bg);
+  /* 下部固定CTAぶんの余白 */
+  padding-bottom: 96px;
+}
+
+@media (min-width: 768px) {
+  .cl-wrap {
+    max-width: 640px;
+  }
+}
+
+/* =====================================================
+   ヘッダー
+   ===================================================== */
+.cl-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 253, 247, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px dashed var(--cl-ink-line);
+}
+
+.cl-header__logo {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--cl-ink);
+}
+
+.cl-header__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cl-blue-500);
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(74, 150, 194, 0.35);
+}
+
+.cl-header__chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: blink 1.6s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* =====================================================
+   共通：見出し
+   ===================================================== */
+.cl-section-head {
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.cl-section-head--center { text-align: center; }
+
+.cl-section-head__tag {
+  display: inline-block;
+  font-family: var(--cl-font-pop);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  padding: 3px 14px;
+  background: var(--cl-blue);
+  color: var(--cl-ink);
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.cl-section-head__tag--pink { background: var(--cl-pink); }
+.cl-section-head__tag--mint { background: var(--cl-mint); }
+
+.cl-section-head__title {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--cl-ink);
+}
+
+.cl-section-head__title em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 65%, var(--cl-cream) 65%);
+  padding: 0 2px;
+}
+
+.cl-section-head__lead {
+  margin-top: 12px;
+  color: var(--cl-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* =====================================================
+   共通：CTAボタン
+   ===================================================== */
+.cl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: var(--cl-font-body);
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.cl-btn--primary {
+  background: var(--cl-blue-500);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(74, 150, 194, 0.35);
+}
+.cl-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 22px rgba(74, 150, 194, 0.45); }
+
+.cl-btn--ghost {
+  background: #fff;
+  color: var(--cl-ink);
+  border-color: var(--cl-ink);
+}
+.cl-btn--ghost:hover { background: var(--cl-blue-50); }
+
+.cl-btn--line {
+  background: var(--cl-blue-400);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(111, 181, 217, 0.35);
+}
+.cl-btn--line:hover { transform: translateY(-2px); }
+
+.cl-btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* =====================================================
+   手書き風 装飾（ドゥードゥル）
+   ===================================================== */
+.cl-doodle {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+}
+
+.cl-doodle--star {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><path d='M20 4 L24 16 L36 18 L26 26 L29 38 L20 31 L11 38 L14 26 L4 18 L16 16 Z' fill='none' stroke='%234a96c2' stroke-width='2' stroke-linejoin='round'/></svg>") no-repeat center/contain;
+}
+
+.cl-doodle--circle {
+  width: 46px; height: 46px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><circle cx='25' cy='25' r='20' fill='none' stroke='%236fb5d9' stroke-width='2.4' stroke-dasharray='4 4'/></svg>") no-repeat center/contain;
+}
+
+.cl-doodle--squiggle {
+  width: 60px; height: 18px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 20'><path d='M2 10 Q12 0 22 10 T42 10 T62 10 T82 10' fill='none' stroke='%23a8d2e8' stroke-width='2.4' stroke-linecap='round'/></svg>") no-repeat center/contain;
+}
+
+.cl-doodle--heart {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><path d='M20 33 C 8 23 6 14 12 10 C 16 8 20 11 20 15 C 20 11 24 8 28 10 C 34 14 32 23 20 33 Z' fill='none' stroke='%234a96c2' stroke-width='2.2' stroke-linejoin='round'/></svg>") no-repeat center/contain;
+}
+
+/* =====================================================
+   1. ファーストビュー
+   ===================================================== */
+.cl-hero {
+  position: relative;
+  padding: 36px var(--cl-pad-x) 44px;
+  overflow: hidden;
+  /* 水彩のような淡くにじむブルーグラデーション */
+  background:
+    radial-gradient(ellipse at 80% -10%, rgba(207, 229, 243, 0.85) 0, transparent 55%),
+    radial-gradient(ellipse at -10% 30%, rgba(168, 210, 232, 0.55) 0, transparent 50%),
+    radial-gradient(ellipse at 50% 110%, rgba(230, 241, 249, 0.95) 0, transparent 60%),
+    var(--cl-bg);
+}
+
+.cl-hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(60, 66, 87, 0.15);
+  border-radius: 999px;
+  font-family: var(--cl-font-pop);
+  font-size: 0.78rem;
+  color: var(--cl-blue-dp);
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.cl-hero__catch {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 2.15rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--cl-ink);
+  margin-bottom: 18px;
+}
+
+.cl-hero__catch em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 68%, rgba(168, 210, 232, 0.55) 68%);
+  padding: 0 4px;
+}
+
+.cl-hero__keyword {
+  display: inline-block;
+  color: var(--cl-blue-500);
+  position: relative;
+}
+.cl-hero__keyword::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 6px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'><path d='M2 4 Q30 -2 60 4 T118 4' fill='none' stroke='%234a96c2' stroke-width='2.5' stroke-linecap='round'/></svg>") no-repeat center/100% 100%;
+}
+
+.cl-hero__sub {
+  font-size: 0.96rem;
+  color: var(--cl-ink-soft);
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+
+.cl-hero__visual {
+  margin: 12px 0 28px;
+  position: relative;
+}
+.cl-hero__visual--secondary {
+  margin-top: -4px;
+  margin-bottom: 24px;
+}
+
+.cl-hero__image {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  border-radius: var(--cl-radius-lg);
+  overflow: hidden;
+  position: relative;
+  /* 水彩感のあるソフトなブルー影 */
+  box-shadow:
+    0 24px 40px -20px rgba(74, 150, 194, 0.35),
+    0 8px 16px -10px rgba(168, 210, 232, 0.35);
+}
+
+.cl-hero__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 画像未配置時のフォールバック（水彩風プレースホルダー） */
+.cl-hero__image-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 30% 25%, rgba(230, 241, 249, 0.9), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(168, 210, 232, 0.55), transparent 60%),
+    radial-gradient(ellipse at 50% 95%, rgba(207, 229, 243, 0.7), transparent 60%),
+    linear-gradient(135deg, #f5fafd 0%, #e6f1f9 100%);
+  color: var(--cl-blue-500);
+  text-align: center;
+}
+
+.cl-hero__image-cloud {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--cl-font-hand);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+
+.cl-hero__image-cloud span {
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
+}
+
+.cl-hero__image-fallback small {
+  margin-top: 14px;
+  font-size: 0.72rem;
+  color: var(--cl-ink-soft);
+  letter-spacing: 0.04em;
+}
+
+/* クーポンバナー（FV） */
+.cl-hero__coupon {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 2.5px solid var(--cl-blue-500);
+  border-radius: var(--cl-radius);
+  margin-bottom: 18px;
+  position: relative;
+  box-shadow: var(--cl-shadow);
+  transition: transform 0.2s ease;
+}
+.cl-hero__coupon:hover { transform: translateY(-2px); }
+
+.cl-hero__coupon::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 22px; height: 22px;
+  background: var(--cl-blue-500);
+  border-radius: 50%;
+}
+
+.cl-hero__coupon-label {
+  font-family: var(--cl-font-pop);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  background: var(--cl-blue-500);
+  color: #fff;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.cl-hero__coupon-main {
+  font-family: var(--cl-font-hand);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--cl-ink);
+}
+.cl-hero__coupon-main strong {
+  font-size: 1.5rem;
+  color: var(--cl-blue-500);
+  letter-spacing: 0.01em;
+}
+.cl-hero__coupon-num { font-size: 2.1rem; }
+.cl-hero__coupon-main small { font-size: 0.95rem; margin-left: 2px; }
+
+.cl-hero__coupon-arrow {
+  font-size: 0.76rem;
+  color: var(--cl-blue-500);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cl-hero__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cl-hero__cta .cl-btn { width: 100%; }
+
+/* =====================================================
+   2. 共感セクション
+   ===================================================== */
+.cl-worry {
+  position: relative;
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: linear-gradient(180deg, var(--cl-bg) 0%, var(--cl-lavender) 100%);
+}
+
+.cl-worry__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.cl-worry__item {
+  position: relative;
+  background: #fff;
+  border-radius: var(--cl-radius);
+  padding: 18px 14px 16px;
+  font-family: var(--cl-font-hand);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--cl-ink);
+  box-shadow: 0 10px 24px -12px rgba(60, 66, 87, 0.18);
+  border-top: 3px solid var(--cl-blue);
+}
+
+.cl-worry__item:nth-child(2n) { border-top-color: var(--cl-pink); }
+.cl-worry__item:nth-child(3n) { border-top-color: var(--cl-mint); }
+.cl-worry__item:nth-child(5n) { border-top-color: var(--cl-cream-dp); }
+
+.cl-worry__item strong {
+  font-weight: 700;
+  color: var(--cl-blue-500);
+}
+
+.cl-worry__num {
+  display: inline-block;
+  font-family: var(--cl-font-pop);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--cl-ink-soft);
+  margin-bottom: 6px;
+}
+
+.cl-worry__bridge {
+  text-align: center;
+  font-family: var(--cl-font-hand);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cl-ink);
+  padding: 18px;
+  background: #fff;
+  border-radius: var(--cl-radius);
+  border: 1.5px dashed var(--cl-blue-400);
+  position: relative;
+}
+
+.cl-worry__bridge::before {
+  content: "↓";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  color: var(--cl-blue-500);
+}
+
+/* =====================================================
+   3. デビュー後の日常
+   ===================================================== */
+.cl-after {
+  position: relative;
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: var(--cl-bg);
+}
+
+.cl-after__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cl-scene {
+  background: #fff;
+  border-radius: var(--cl-radius);
+  padding: 20px 16px;
+  box-shadow: 0 14px 28px -16px rgba(60, 66, 87, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.cl-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--scene-tint, var(--cl-blue)) 0%, transparent 60%);
+  opacity: 0.55;
+  z-index: 0;
+}
+.cl-scene > * { position: relative; z-index: 1; }
+.cl-scene:hover { transform: translateY(-3px); box-shadow: 0 20px 32px -16px rgba(60, 66, 87, 0.22); }
+
+.cl-scene--blue   { --scene-tint: var(--cl-blue); }
+.cl-scene--pink   { --scene-tint: var(--cl-pink); }
+.cl-scene--mint   { --scene-tint: var(--cl-mint); }
+.cl-scene--cream  { --scene-tint: var(--cl-cream); }
+
+.cl-scene__icon {
+  width: 52px; height: 52px;
+  background: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(60, 66, 87, 0.08);
+}
+.cl-scene__icon svg { width: 30px; height: 30px; }
+
+.cl-scene h3 {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.45;
+  margin-bottom: 6px;
+  color: var(--cl-ink);
+}
+
+.cl-scene p {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--cl-ink-soft);
+}
+
+/* =====================================================
+   4. 安心サポート
+   ===================================================== */
+.cl-support {
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: linear-gradient(180deg, var(--cl-bg) 0%, var(--cl-blue) 100%);
+}
+
+.cl-support__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cl-support__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  border-radius: var(--cl-radius);
+  padding: 16px 16px;
+  box-shadow: var(--cl-shadow);
+}
+
+.cl-support__check {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  background: var(--cl-blue-100);
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--cl-blue-500);
+  font-size: 1rem;
+}
+
+.cl-support__item strong {
+  display: block;
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--cl-ink);
+  margin-bottom: 4px;
+}
+
+.cl-support__item p {
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--cl-ink-soft);
+}
+
+/* =====================================================
+   5. クーポン
+   ===================================================== */
+.cl-coupon {
+  position: relative;
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: var(--cl-bg);
+  scroll-margin-top: 70px;
+}
+
+.cl-coupon-card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--cl-radius-lg);
+  padding: 32px 24px 28px;
+  text-align: center;
+  border: 2.5px solid var(--cl-blue-500);
+  box-shadow: 0 16px 36px rgba(74, 150, 194, 0.22);
+  /* チケット風カット */
+  background-image:
+    radial-gradient(circle at 0% 50%, transparent 12px, #fff 12px),
+    radial-gradient(circle at 100% 50%, transparent 12px, #fff 12px);
+  background-position: left center, right center;
+  background-size: 50% 100%, 50% 100%;
+  background-repeat: no-repeat;
+}
+
+.cl-coupon-card__ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--cl-font-pop);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  background: var(--cl-blue-500);
+  color: #fff;
+  padding: 4px 18px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(74, 150, 194, 0.4);
+}
+
+.cl-coupon-card__brand {
+  font-family: var(--cl-font-hand);
+  color: var(--cl-ink-soft);
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.cl-coupon-card__title {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--cl-ink);
+}
+.cl-coupon-card__title span {
+  display: inline-block;
+  background: linear-gradient(180deg, transparent 65%, var(--cl-blue-200) 65%);
+  padding: 0 4px;
+}
+
+.cl-coupon-card__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin: 18px 0 14px;
+  color: var(--cl-blue-500);
+  font-family: var(--cl-font-hand);
+}
+
+.cl-coupon-card__num {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.cl-coupon-card__pct {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.cl-coupon-card__off {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.cl-coupon-card__lead {
+  font-size: 0.9rem;
+  color: var(--cl-ink-soft);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.cl-coupon-card__notes {
+  list-style: none;
+  padding: 12px 14px;
+  background: var(--cl-blue-50);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  text-align: left;
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: var(--cl-ink-soft);
+}
+.cl-coupon-card__notes li + li { margin-top: 2px; }
+
+/* =====================================================
+   6. 来店の流れ
+   ===================================================== */
+.cl-flow {
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: linear-gradient(180deg, var(--cl-bg) 0%, var(--cl-mint) 100%);
+}
+
+.cl-flow__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+.cl-flow__list::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 24px;
+  width: 2px;
+  background-image: linear-gradient(180deg, var(--cl-ink-line) 50%, transparent 50%);
+  background-size: 2px 8px;
+  z-index: 0;
+}
+
+.cl-flow__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: var(--cl-radius);
+  padding: 16px 18px 16px 14px;
+  box-shadow: var(--cl-shadow);
+  z-index: 1;
+}
+
+.cl-flow__num {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  display: grid;
+  place-items: center;
+  background: var(--cl-blue);
+  border-radius: 50%;
+  font-family: var(--cl-font-pop);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--cl-ink);
+  box-shadow: 0 6px 14px -6px rgba(60, 66, 87, 0.25);
+}
+
+.cl-flow__item:nth-child(2n) .cl-flow__num { background: var(--cl-pink); }
+.cl-flow__item:nth-child(3n) .cl-flow__num { background: var(--cl-mint); }
+.cl-flow__item:nth-child(5n) .cl-flow__num { background: var(--cl-cream); }
+
+.cl-flow__item--goal .cl-flow__num {
+  background: var(--cl-blue-500) !important;
+  color: #fff;
+}
+
+.cl-flow__body h3 {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin-bottom: 4px;
+  color: var(--cl-ink);
+}
+
+.cl-flow__body p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--cl-ink-soft);
+}
+
+/* =====================================================
+   7. FAQ
+   ===================================================== */
+.cl-faq {
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: var(--cl-bg);
+}
+
+.cl-faq__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cl-faq__item {
+  background: #fff;
+  border-radius: var(--cl-radius);
+  border: 1.5px solid var(--cl-ink-line);
+  overflow: hidden;
+}
+
+.cl-faq__q {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  text-align: left;
+  color: var(--cl-ink);
+  font-weight: 600;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  transition: background 0.2s ease;
+}
+.cl-faq__q:hover { background: var(--cl-blue-50); }
+
+.cl-faq__mark {
+  width: 30px; height: 30px;
+  display: grid;
+  place-items: center;
+  background: var(--cl-blue);
+  color: var(--cl-ink);
+  border-radius: 50%;
+  font-family: var(--cl-font-pop);
+  font-weight: 700;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+.cl-faq__mark--a { background: var(--cl-blue-100); color: var(--cl-blue-500); }
+
+.cl-faq__toggle {
+  width: 24px; height: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+.cl-faq__toggle::before,
+.cl-faq__toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px; height: 2px;
+  background: var(--cl-ink);
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease;
+}
+.cl-faq__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+.cl-faq__q[aria-expanded="true"] .cl-faq__toggle::after {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.cl-faq__a {
+  display: none;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  padding: 0 16px 16px 16px;
+  align-items: flex-start;
+}
+
+.cl-faq__a p {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--cl-ink-soft);
+}
+
+.cl-faq__item.is-open .cl-faq__a {
+  display: grid;
+}
+
+/* =====================================================
+   8. アクセス・店舗情報
+   ===================================================== */
+.cl-access {
+  padding: var(--cl-pad-y) var(--cl-pad-x);
+  background: linear-gradient(180deg, var(--cl-bg) 0%, var(--cl-cream) 100%);
+  scroll-margin-top: 70px;
+}
+
+.cl-access__photo {
+  margin-bottom: 22px;
+  border-radius: var(--cl-radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--cl-shadow);
+}
+
+.cl-access__photo-placeholder {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--cl-blue-100) 0,
+      var(--cl-blue-100) 12px,
+      var(--cl-bg) 12px,
+      var(--cl-bg) 24px
+    );
+  color: var(--cl-ink-soft);
+  text-align: center;
+  font-family: var(--cl-font-hand);
+}
+.cl-access__photo-placeholder span { font-size: 1rem; }
+.cl-access__photo-placeholder small { display: block; font-size: 0.72rem; margin-top: 4px; }
+
+.cl-access__info {
+  background: #fff;
+  border-radius: var(--cl-radius);
+  padding: 8px 0;
+  margin-bottom: 22px;
+  box-shadow: var(--cl-shadow);
+}
+
+.cl-access__row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px dashed var(--cl-ink-line);
+}
+.cl-access__row:last-child { border-bottom: none; }
+
+.cl-access__row dt {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--cl-ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.cl-access__row dd {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--cl-ink);
+}
+
+.cl-access__row dd a { color: var(--cl-blue-500); font-weight: 700; }
+
+.cl-access__map {
+  margin-bottom: 22px;
+  border-radius: var(--cl-radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--cl-shadow);
+}
+.cl-access__map iframe { width: 100%; height: 240px; border: none; display: block; }
+
+.cl-access__map-placeholder {
+  aspect-ratio: 16 / 11;
+  display: grid;
+  place-items: center;
+  background: var(--cl-blue-100);
+  color: var(--cl-ink-soft);
+  text-align: center;
+  font-family: var(--cl-font-hand);
+}
+.cl-access__map-placeholder small { display: block; font-size: 0.72rem; margin-top: 4px; }
+
+.cl-access__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =====================================================
+   9. 最終CTA
+   ===================================================== */
+.cl-final {
+  position: relative;
+  padding: var(--cl-pad-y) var(--cl-pad-x) 64px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 20% 0%, var(--cl-blue-100) 0, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, var(--cl-blue-200) 0, transparent 55%),
+    var(--cl-bg);
+}
+
+.cl-final__title {
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.55;
+  color: var(--cl-ink);
+  margin-bottom: 14px;
+}
+
+.cl-final__title em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 60%, var(--cl-blue-200) 60%);
+  padding: 0 4px;
+}
+
+.cl-final__lead {
+  font-size: 0.95rem;
+  color: var(--cl-ink-soft);
+  line-height: 1.85;
+  margin-bottom: 26px;
+}
+
+.cl-final__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =====================================================
+   フッター
+   ===================================================== */
+.cl-footer {
+  padding: 32px var(--cl-pad-x) 28px;
+  text-align: center;
+  background: var(--cl-ink);
+  color: #fff;
+}
+
+.cl-footer__logo {
+  display: inline-block;
+  font-family: var(--cl-font-hand);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.cl-footer p {
+  font-size: 0.82rem;
+  opacity: 0.85;
+  margin-bottom: 16px;
+}
+
+.cl-footer small {
+  font-size: 0.72rem;
+  opacity: 0.6;
+}
+
+/* =====================================================
+   スマホ下部 固定CTA
+   ===================================================== */
+.cl-sticky {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 253, 247, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1.5px dashed var(--cl-ink-line);
+  transform: translateY(110%);
+  transition: transform 0.35s ease;
+}
+
+.cl-sticky.is-visible {
+  transform: translateY(0);
+}
+
+.cl-sticky__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.cl-sticky__btn--primary {
+  background: var(--cl-blue-500);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(74, 150, 194, 0.4);
+}
+.cl-sticky__btn--ghost {
+  background: #fff;
+  color: var(--cl-ink);
+  border: 1.5px solid var(--cl-ink);
+}
+
+.cl-sticky__icon {
+  font-size: 1.05rem;
+}
+
+/* =====================================================
+   セクション内ビジュアル（イラスト画像枠）
+   ===================================================== */
+.cl-visual {
+  margin: 0 auto 28px;
+  max-width: 380px;
+  border-radius: var(--cl-radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 20px 36px -20px rgba(74, 150, 194, 0.3),
+    0 6px 14px -8px rgba(168, 210, 232, 0.4);
+}
+.cl-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* フェードイン制御は廃止しました（コンテンツが常時表示されるよう優先） */
+
+/* スクロール時の軽い揺れ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* =====================================================
+   レスポンシブ調整
+   ===================================================== */
+
+/* 640px 以上：余裕のあるサイズ感へ */
+@media (min-width: 640px) {
+  :root {
+    --cl-pad-x: 36px;
+    --cl-pad-y: 72px;
+  }
+
+  .cl-hero__catch { font-size: 2.5rem; }
+  .cl-section-head__title { font-size: 1.75rem; }
+  .cl-coupon-card__num { font-size: 6rem; }
+
+  .cl-worry__list,
+  .cl-after__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* 768px 以上：タブレット */
+@media (min-width: 768px) {
+  .cl-after__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cl-hero__cta,
+  .cl-final__cta,
+  .cl-access__btns {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .cl-hero__cta .cl-btn,
+  .cl-final__cta .cl-btn,
+  .cl-access__btns .cl-btn { flex: 1; }
+
+  /* タブレット以上では下部固定CTAを非表示（ページ内CTAで充分） */
+  .cl-sticky { display: none; }
+  .cl-wrap { padding-bottom: 40px; }
+}
+
+/* リスペクト・モーション設定 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .cl-fade { opacity: 1; transform: none; }
+}
