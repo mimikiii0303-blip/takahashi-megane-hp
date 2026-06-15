@@ -730,12 +730,124 @@
       font-size: 1rem;
     }
 
+    /* --- 30代ライフスタイルセクション --- */
+    .lifestyle-section {
+      background: #0f1923;
+      padding: 80px 0;
+    }
+
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .lifestyle-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lifestyle-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      min-height: 320px;
+      transition: transform 0.6s ease;
+    }
+
+    .lifestyle-img:hover img {
+      transform: scale(1.04);
+    }
+
+    .lifestyle-img-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    }
+
+    .lifestyle-img-label {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .lifestyle-message {
+      text-align: center;
+      color: rgba(255,255,255,0.85);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      line-height: 2;
+      max-width: 640px;
+      margin: 0 auto 0;
+    }
+
+    .lifestyle-message em {
+      color: var(--secondary);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* --- 取り扱いブランド --- */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .brand-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      background: var(--bg);
+      transition: all var(--transition);
+    }
+
+    .brand-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .brand-card-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .brand-card-origin {
+      font-size: 0.7rem;
+      color: var(--secondary);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .brand-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
     /* --- レスポンシブ --- */
     @media (max-width: 1024px) {
       .style-grid { grid-template-columns: repeat(2, 1fr); }
       .ba-grid    { grid-template-columns: repeat(2, 1fr); }
       .expertise-grid { grid-template-columns: 1fr; }
       .story-section  { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 1024px) {
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -747,6 +859,8 @@
       .lineup-grid  { grid-template-columns: 1fr; }
       .mg-reviews   { grid-template-columns: 1fr; }
       .expertise-left, .expertise-right { padding: 36px 24px; }
+      .lifestyle-grid { grid-template-columns: 1fr; }
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
       .story-img    { height: 240px; }
     }
 
@@ -961,6 +1075,41 @@
     </div>
   </section>
 
+  <!-- 30代男性ライフスタイル -->
+  <section class="lifestyle-section">
+    <div class="container">
+      <div class="section-header text-center fade-in" style="color:#fff;">
+        <span class="section-label" style="color:var(--secondary);">FOR 30s MEN</span>
+        <h2 class="section-title" style="color:#fff;">メガネは、男の<br>ファッションの中心にある。</h2>
+        <p class="lifestyle-message">
+          スーツにも、デニムにも。<br>
+          <em>フレーム一本</em>で、あなたの印象は大きく変わる。<br>
+          「似合うメガネ」を手に入れた男は、自信が違う。
+        </p>
+      </div>
+      <div class="lifestyle-grid fade-in">
+        <div class="lifestyle-img">
+          <img src="https://images.unsplash.com/photo-1754577060078-21315dd188c8?w=800&h=640&fit=crop&crop=center&q=80" alt="スタイリッシュな30代男性" loading="lazy">
+          <div class="lifestyle-img-overlay">
+            <span class="lifestyle-img-label">BUSINESS STYLE</span>
+          </div>
+        </div>
+        <div class="lifestyle-img">
+          <img src="https://images.unsplash.com/photo-1665118440493-c25389dd1166?w=600&h=640&fit=crop&crop=faces&q=80" alt="メガネをかけた男性ポートレート" loading="lazy">
+          <div class="lifestyle-img-overlay">
+            <span class="lifestyle-img-label">PORTRAIT</span>
+          </div>
+        </div>
+        <div class="lifestyle-img">
+          <img src="https://images.unsplash.com/photo-1651017810068-7ec4cf8bd7e9?w=600&h=640&fit=crop&crop=faces&q=80" alt="おしゃれなメガネスタイル" loading="lazy">
+          <div class="lifestyle-img-overlay">
+            <span class="lifestyle-img-label">CASUAL STYLE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ③ 専門性の訴求 -->
   <section class="section" id="expertise">
     <div class="container">
@@ -1164,6 +1313,60 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 取り扱いブランド -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="section-label">BRAND LINEUP</span>
+        <h2 class="section-title">取り扱いブランド</h2>
+        <p class="section-subtitle">国内外の厳選されたブランドを豊富にご用意しています。</p>
+      </div>
+      <div class="brand-grid fade-in">
+        <div class="brand-card">
+          <p class="brand-card-origin">USA / 1968</p>
+          <p class="brand-card-name">Calvin Klein</p>
+          <p class="brand-card-desc">ミニマルで洗練されたアメリカンスタイル。シンプルの中に宿る上質感。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">JAPAN</p>
+          <p class="brand-card-name">dun</p>
+          <p class="brand-card-desc">日本が誇る鯖江発のブランド。軽さと精巧な作りで日常に溶け込む一本。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">JAPAN</p>
+          <p class="brand-card-name">MERCURYDUO</p>
+          <p class="brand-card-desc">都会的でトレンド感のあるデザイン。感度の高い大人の女性・男性に。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">GERMANY / 1877</p>
+          <p class="brand-card-name">RODENSTOCK</p>
+          <p class="brand-card-desc">ドイツ光学の老舗。レンズ技術とフレームデザインの両立を追求。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">DENMARK</p>
+          <p class="brand-card-name">GOSH</p>
+          <p class="brand-card-desc">北欧デザインの軽やかさと遊び心。カラーとシルエットで個性を表現。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">JAPAN</p>
+          <p class="brand-card-name">Fleir</p>
+          <p class="brand-card-desc">シンプルで飽きのこないデザイン。日本人の顔立ちに合わせた設計。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">USA / 1899</p>
+          <p class="brand-card-name">MOSCOT</p>
+          <p class="brand-card-desc">NYのアイコン的ブランド。クラシックで知的な佇まいが世界で愛される。</p>
+        </div>
+        <div class="brand-card">
+          <p class="brand-card-origin">FRANCE / 1978</p>
+          <p class="brand-card-name">Alain Mikli</p>
+          <p class="brand-card-desc">フランス発のアート感覚溢れるフレーム。唯一無二の存在感を放つ。</p>
+        </div>
+      </div>
+      <p class="text-center fade-in" style="margin-top:28px; font-size:0.85rem; color:var(--text-muted);">※ 取り扱いブランドは店舗により異なります。詳しくは各店舗にお問い合わせください。</p>
     </div>
   </section>
 
