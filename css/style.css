@@ -2172,3 +2172,110 @@ ul, ol {
     font-size: 2rem;
   }
 }
+
+/* =====================================================
+   子供メガネページ：眼科受診のお知らせ
+   ===================================================== */
+.ophthal-notice {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  background: #fffbef;
+  border: 2px solid #e8a000;
+  border-left: 6px solid #e8a000;
+  border-radius: 12px;
+  padding: 32px;
+  margin-top: 40px;
+}
+
+.ophthal-notice-icon {
+  font-size: 2.8rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.ophthal-notice-body h2 {
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  color: #b36a00;
+  margin-bottom: 14px;
+  font-family: var(--font-heading);
+  line-height: 1.6;
+}
+
+.ophthal-notice-body p {
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.ophthal-notice-body ul {
+  color: var(--text-light);
+  line-height: 1.9;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.ophthal-notice-body ul li {
+  margin-bottom: 6px;
+}
+
+.ophthal-notice-cta {
+  color: var(--primary);
+  font-size: 1rem;
+  border-top: 1px solid #e8c070;
+  padding-top: 14px;
+  margin-top: 4px !important;
+  margin-bottom: 0 !important;
+}
+
+/* 子供の視力グラフ風インフォ */
+.kids-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.kids-stat-item {
+  text-align: center;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px 16px;
+  box-shadow: var(--shadow-card);
+  border-top: 4px solid var(--secondary);
+}
+
+.kids-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.kids-stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--font-heading);
+  line-height: 1.1;
+}
+
+.kids-stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .ophthal-notice {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .kids-stats-bar {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
