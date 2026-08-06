@@ -2250,6 +2250,26 @@ ul, ol {
   stroke-linejoin: round;
 }
 
+.service-main-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.support-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* =====================================================
    店舗ページ：ブランドタグ
    ===================================================== */
