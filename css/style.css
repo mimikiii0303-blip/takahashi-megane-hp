@@ -2467,6 +2467,30 @@ ul, ol {
 }
 
 /* =====================================================
+   子供メガネページ：近視進行対策の選択肢タグ
+   ===================================================== */
+.miopia-tag {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.miopia-tag-shop {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.miopia-tag-clinic {
+  background: var(--accent-blue);
+  color: var(--primary);
+  border: 1px solid var(--accent-blue-deep);
+}
+
+/* =====================================================
    子供メガネページ：追加画像
    ===================================================== */
 .kodomo-hero {
