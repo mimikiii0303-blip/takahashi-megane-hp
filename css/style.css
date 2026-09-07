@@ -2308,6 +2308,165 @@ ul, ol {
 }
 
 /* =====================================================
+   クーポンページ
+   ===================================================== */
+.coupon-badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto 12px;
+}
+
+.coupon-badge {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.coupon-badge.is-first {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.coupon-badge-label {
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+
+.coupon-badge.is-first .coupon-badge-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.coupon-badge-num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.coupon-badge.is-first .coupon-badge-num {
+  color: var(--white);
+}
+
+.coupon-badge-num strong {
+  font-size: 3.4rem;
+}
+
+.coupon-badge-num span {
+  font-size: 1.4rem;
+  margin-left: 4px;
+}
+
+.coupon-badge-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.coupon-badge.is-first .coupon-badge-note {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 価格表 */
+.coupon-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.coupon-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  min-width: 480px;
+}
+
+.coupon-table th,
+.coupon-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.coupon-table thead th {
+  background: var(--bg-gray);
+  color: var(--primary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.coupon-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.coupon-table .coupon-price {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.coupon-table .coupon-price-first {
+  font-weight: 700;
+  color: #b3541e;
+  white-space: nowrap;
+}
+
+.coupon-table .coupon-maker {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* 利用条件 */
+.coupon-terms {
+  background: var(--bg-gray);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+}
+
+.coupon-terms li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+.coupon-terms li::before {
+  content: "○";
+  position: absolute;
+  left: 0;
+  color: var(--secondary);
+}
+
+.coupon-terms li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .coupon-badges {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .coupon-badge-num strong {
+    font-size: 2.8rem;
+  }
+
+  .coupon-terms {
+    padding: 20px 20px;
+  }
+}
+
+/* =====================================================
    子供メガネページ：追加画像
    ===================================================== */
 .kodomo-hero {
