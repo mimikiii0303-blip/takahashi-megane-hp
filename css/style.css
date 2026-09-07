@@ -669,32 +669,19 @@ ul, ol {
 }
 
 .concern-icon {
-  width: 60px;
-  height: 60px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
-  margin-bottom: 18px;
-  transition: all var(--transition);
 }
 
-.concern-icon svg {
-  width: 28px;
-  height: 28px;
-  stroke: currentColor;
-  stroke-width: 1.4;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.concern-card:hover .concern-icon {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: var(--white);
+.concern-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .concern-title {
@@ -2156,9 +2143,9 @@ ul, ol {
   }
 
   .concern-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 14px;
   }
 
   .concern-title {
