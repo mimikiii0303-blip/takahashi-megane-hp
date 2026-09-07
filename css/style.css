@@ -2687,6 +2687,14 @@ ul, ol {
   }
 }
 
+/* --- 表示切り替えユーティリティ（PC／スマホ） --- */
+.sp-only { display: none; }
+
+@media (max-width: 640px) {
+  .pc-only { display: none; }
+  .sp-only { display: inline; }
+}
+
 /* --- トップページ：診断への導線バナー --- */
 .shindan-cta {
   background: var(--bg-gray);
