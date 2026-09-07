@@ -2308,6 +2308,61 @@ ul, ol {
 }
 
 /* =====================================================
+   子供メガネページ：追加画像
+   ===================================================== */
+.kodomo-hero {
+  margin-top: 32px;
+}
+
+.kodomo-hero img {
+  width: 100%;
+  height: clamp(240px, 42vw, 460px);
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.kodomo-photo-wide img {
+  width: 100%;
+  height: clamp(200px, 32vw, 340px);
+  object-fit: cover;
+  object-position: center 38%;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.kodomo-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.kodomo-two-col img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.kodomo-col-text .section-label {
+  margin-bottom: 10px;
+}
+
+.kodomo-col-text .section-title {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+  .kodomo-two-col {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* =====================================================
    見え方のもったいない発見チェック（診断ページ）
    ===================================================== */
 /* --- 診断前の説明 --- */
