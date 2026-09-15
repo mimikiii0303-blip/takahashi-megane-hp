@@ -2477,6 +2477,19 @@ ul, ol {
   border: 1px solid var(--accent-blue-deep);
 }
 
+/* 眼科への外部リンク（本文になじむ控えめな下線） */
+.eyecare-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+
+.eyecare-link:hover {
+  color: var(--secondary);
+}
+
 /* =====================================================
    子供メガネページ：追加画像
    ===================================================== */
