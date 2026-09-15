@@ -27,7 +27,7 @@
   --border-light: #eeeeee;
   --text: #1f2529;           /* 墨色テキスト */
   --text-light: #525252;     /* グレーテキスト */
-  --text-muted: #8a8a8a;     /* 明るいグレーテキスト */
+  --text-muted: #6b6b6b;     /* 補足テキスト（コントラスト確保） */
   --text-white: #ffffff;
   --card: #ffffff;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -193,7 +193,7 @@ ul, ol {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--line-green);
+  background: var(--primary);
   color: var(--text-white) !important;
   padding: 8px 18px;
   border-radius: 50px;
@@ -204,7 +204,7 @@ ul, ol {
 }
 
 .nav-cta:hover {
-  background: var(--line-green-hover);
+  background: var(--primary-light);
   color: var(--text-white) !important;
   transform: translateY(-1px);
 }
@@ -347,8 +347,17 @@ ul, ol {
   font-size: clamp(0.95rem, 2vw, 1.15rem);
   line-height: 2;
   opacity: 0.9;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
   font-weight: 400;
+}
+
+/* ファーストビューの安心バッジ（予約不要・相談無料・駅すぐ） */
+.hero-note {
+  color: #fff;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 30px;
 }
 
 .hero-ctas {
