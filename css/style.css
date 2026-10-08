@@ -1839,6 +1839,44 @@ ul, ol {
   line-height: 1.7;
 }
 
+/* 定期便バッジ（アキュビュー定期便・MARLO など） */
+.plan-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 13px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+/* 店舗限定バッジ（ルクア天六店のみ） */
+.store-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 13px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  background: var(--primary);
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+/* 定期便に関する注記 */
+.lens-plan-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 14px;
+  letter-spacing: 0.02em;
+}
+
 .lens-category-heading {
   font-family: var(--font-heading);
   font-size: 1.3rem;
