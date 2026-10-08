@@ -2465,6 +2465,44 @@ ul, ol {
 }
 
 /* =====================================================
+   コンタクトデビューLP：タイプ別カード
+   ===================================================== */
+.debut-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.debut-type-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.debut-type-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.debut-type-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .debut-type-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =====================================================
    子供メガネページ：近視進行対策の選択肢タグ
    ===================================================== */
 .miopia-tag {
