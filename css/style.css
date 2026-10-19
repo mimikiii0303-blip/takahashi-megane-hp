@@ -1854,7 +1854,7 @@ ul, ol {
   line-height: 1.4;
 }
 
-/* 店舗限定バッジ（ルクア天六店のみ） */
+/* 店舗限定バッジ（天六店・ルクア店） */
 .store-tag {
   display: inline-block;
   margin-top: 12px;
@@ -1866,6 +1866,29 @@ ul, ol {
   background: var(--primary);
   border-radius: 999px;
   line-height: 1.4;
+}
+
+/* リンクとして使う店舗バッジ */
+a.store-tag {
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+a.store-tag:hover {
+  opacity: 0.82;
+}
+.store-tag + .store-tag {
+  margin-left: 6px;
+}
+
+/* 店舗名リンク（店舗情報カード） */
+.strength-title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+.strength-title a:hover {
+  border-bottom-color: currentColor;
 }
 
 /* 定期便に関する注記 */
