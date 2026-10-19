@@ -3220,14 +3220,16 @@ a.store-tag:hover {
 
 /* ===== コンタクト製品一覧：余白を圧縮してコンパクト表示 ===== */
 /* 画像のグレー背景ブロックをなくし（白カードに溶け込ませる）、余白を削減 */
+/* デスクトップは4列でカードを狭く（箱を相対的に大きく・横余白を削減） */
 .product-grid {
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
 .product-grid .product-card {
-  padding: 14px;
+  padding: 12px;
 }
 .product-grid .product-card-img {
-  height: 96px;
+  height: 104px;
   padding: 2px;
   margin-bottom: 8px;
   background: transparent;
@@ -3237,6 +3239,8 @@ a.store-tag:hover {
   margin-bottom: 2px;
 }
 .product-grid .product-card-name {
+  font-size: 0.85rem;
+  line-height: 1.4;
   margin-bottom: 6px;
 }
 .product-grid .plan-tag,
@@ -3257,6 +3261,11 @@ a.store-tag:hover {
 }
 
 @media (max-width: 768px) {
+  /* タブレットは3列 */
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
   .lens-category {
     margin-bottom: 26px;
   }
