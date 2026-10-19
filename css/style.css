@@ -3217,3 +3217,66 @@ a.store-tag:hover {
     gap: 10px;
   }
 }
+
+/* ===== コンタクト製品一覧：スクロール圧縮（モバイルで2列・コンパクト） ===== */
+/* カテゴリ間の余白 */
+.lens-category {
+  margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+  .lens-category {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* 製品カードのみ2列表示（店舗・強みグリッドは1列のまま） */
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .product-grid .product-card {
+    padding: 12px 10px;
+  }
+  .product-grid .product-card-img {
+    height: 92px;
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  .product-grid .product-card-maker {
+    font-size: 0.68rem;
+    margin-bottom: 3px;
+  }
+  .product-grid .product-card-name {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+  .product-grid .plan-tag,
+  .product-grid .store-tag {
+    margin-top: 8px;
+    padding: 4px 10px;
+    font-size: 0.66rem;
+  }
+  .product-grid .store-tag + .store-tag {
+    margin-left: 4px;
+  }
+  .lens-category {
+    margin-bottom: 28px;
+  }
+  .lens-category-desc {
+    margin-bottom: 14px;
+  }
+}
+
+/* 製品カード：メーカー名リンク（各社公式サイトへ） */
+.product-card-maker a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  transition: border-bottom-color var(--transition), color var(--transition);
+}
+.product-card-maker a:hover {
+  color: var(--primary);
+  border-bottom-style: solid;
+}
