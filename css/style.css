@@ -3229,11 +3229,17 @@ a.store-tag:hover {
   padding: 12px;
 }
 .product-grid .product-card-img {
-  height: 104px;
-  padding: 2px;
+  height: auto;
+  padding: 0;
   margin-bottom: 8px;
   background: transparent;
   border-radius: 0;
+  display: block;
+}
+.product-grid .product-card-img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .product-grid .product-card-maker {
   margin-bottom: 2px;
@@ -3281,8 +3287,6 @@ a.store-tag:hover {
     padding: 10px 9px;
   }
   .product-grid .product-card-img {
-    height: 70px;
-    padding: 0;
     margin-bottom: 7px;
   }
   .product-grid .product-card-maker {
