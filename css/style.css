@@ -3325,3 +3325,23 @@ a.store-tag:hover {
   color: var(--primary);
   border-bottom-style: solid;
 }
+
+/* 店舗カードのアイコンを店舗写真に（コンタクト店舗情報） */
+.strength-icon.shop-icon {
+  width: 104px;
+  height: 104px;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.strength-icon.shop-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.strength-card:hover .strength-icon.shop-icon {
+  background: transparent;
+}
