@@ -3345,3 +3345,20 @@ a.store-tag:hover {
 .strength-card:hover .strength-icon.shop-icon {
   background: transparent;
 }
+
+/* 定期便バッジをクリック可能なリンクに（アキュビュー定期便・MARLO・メルスプラン） */
+a.plan-tag {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+a.plan-tag::after {
+  content: " ↗";
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+a.plan-tag:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
